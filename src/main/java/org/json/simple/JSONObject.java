@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -142,5 +143,51 @@ public class JSONObject extends HashMap implements Map, JSONAware, JSONStreamAwa
 	 */
 	public static String escape(String s){
 		return JSONValue.escape(s);
+	}
+	
+	/* Helper methods for simpler access to Elements */
+	
+	public Boolean has(Object key) {
+		return containsKey(key);
+	}
+	
+	public String getString(Object key) {
+		try {
+			return (String)get(key).toString();
+		} catch (ClassCastException e) {
+			return null;
+		}
+	}
+	
+	public Number getNumber(Object key) {
+		try {
+			return (Number)get(key);
+		} catch (ClassCastException e) {
+			return null;
+		}
+	}
+	
+	public Boolean getBoolean(Object key) {
+		try {
+			return (Boolean)get(key);
+		} catch (ClassCastException e) {
+			return null;
+		}
+	}
+	
+	public List getList(Object key) {
+		try {
+			return (List)get(key);
+		} catch (ClassCastException e) {
+			return null;
+		}
+	}
+	
+	public JSONObject getObject(Object key) {
+		try {
+			return new JSONObject((Map)get(key));
+		} catch (ClassCastException e) {
+			return null;
+		}
 	}
 }
