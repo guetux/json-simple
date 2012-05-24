@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -175,17 +174,17 @@ public class JSONObject extends HashMap implements Map, JSONAware, JSONStreamAwa
 		}
 	}
 	
-	public List getList(Object key) {
+	public JSONObject getObject(Object key) {
 		try {
-			return (List)get(key);
+			return new JSONObject((Map)get(key));
 		} catch (ClassCastException e) {
 			return null;
 		}
 	}
 	
-	public JSONObject getObject(Object key) {
+	public JSONArray getArray(Object key) {
 		try {
-			return new JSONObject((Map)get(key));
+			return (JSONArray)get(key);
 		} catch (ClassCastException e) {
 			return null;
 		}
