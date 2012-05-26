@@ -146,7 +146,7 @@ public class JSONObject extends HashMap implements Map, JSONAware, JSONStreamAwa
 	
 	/* Helper methods for simpler access to Elements */
 	
-	public Boolean has(Object key) {
+	public boolean has(Object key) {
 		return containsKey(key);
 	}
 	
