@@ -150,13 +150,14 @@ public class JSONObject extends HashMap implements Map, JSONAware, JSONStreamAwa
 		return containsKey(key);
 	}
 	
-	public String getString(Object key) {
-		try {
-			return (String)get(key).toString();
-		} catch (ClassCastException e) {
-			return null;
-		}
-	}
+    public String getString(Object key) {
+        Object value = get(key);
+        if (value == null) {
+            return null;
+        } else {
+            return value.toString();
+        }
+    }
 	
 	public Number getNumber(Object key) {
 		try {
